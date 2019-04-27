@@ -3,8 +3,8 @@
 Path to learning computer science using free online resources. Following along to the guide specified at https://teachyourselfcs.com/
 
 ## Books
-| Subject                    | Book(s)                                             | Link(s)                                                |
-| -------------------------  |-----------------------------------------------------| ------------------------------------------------------------------------|
+| Subject                    | Book(s)                                             | Link(s)                                   |
+| -------------  |--------------------------------------------| --------------------------------------------------|
 | Programming      | Structure and Interpretation of Computer Programs | https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSorter |
 | Computer Architecture      | Computer Organization and Design |  http://www.nand2tetris.org/ |
 | Algorithms and Data Structures      | The Algorithm Design Manual |  http://www3.cs.stonybrook.edu/~algorith/video-lectures/ |
