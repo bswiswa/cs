@@ -47,4 +47,9 @@ For each variable squares is called once so for N variables, the time is approx 
 			          ((> x (first y)) (se x y))
 				       (else (se (first y) (filterByMax x (bf y)))) ))
 
-#| Big O - ignore the constants and focus on the exponents of the steps |#
+#| Big O - ignore the constants and focus on the exponents of the steps 
+some common families of time constraints are as follows:
+Theta(1), Theta(log N), Theta(N) ==> Searching
+Theta(N log N), Theta(N^2) ==> Sorting
+Theta(N^3) ==> Matrix multiplication
+Theta(2^N), Theta(N!), Theta(N^N) ==> Intractible (for practical data sets these programs would take way too long to run). Cannot be done in practice. For problems like this, you attempt to come up with an approximation
