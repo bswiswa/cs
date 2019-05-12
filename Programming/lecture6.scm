@@ -2,7 +2,7 @@
 Alan Kay: Doing With Images Makes Symbols Part 2
 In every application we use these days the applications have windows and icons we click on and take for granted. It is amazing that we now have this standard today. But it was not arrived at by accident.
 
-Book recommendation - Tim Ferris - The Inner Game of Tennis
+Book recommendation - Timothy Gallwey - The Inner Game of Tennis
 
 Learning happens when you get the mentality that needs to learn to focus. You also need to remove the focus from the distracting mentalities. The other problem with teaching is that the part of your body that plays say tennis doesn't understand English so a good way to learn is to find a way of short-circuiting the mentality that always tries to take over. The problem with the usual way of learning something is that you spend a lot of time in doing beginner activities. Instead, you should focus on getting beginners into the activity that they would be doing eventually which is hitting the ball. 
 This principle was applied in user interface design - why spend two weeks reading a user manual to see how to open a file? It is much better to design the interface so that a new user can begin acting as an intermediary from the first time they sit down to use it. And then they get into a process that is rewarding in itself.
