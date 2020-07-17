@@ -26,11 +26,34 @@ public class e1_2 {
             }
         System.out.println("min = " + min);
     }
-    
+
      */
 
+    /// 1.2.2
+        /*
+        Write an Interval1D client that takes an int value n as command-line argument,
+        reads n invervals (each defined by a pair of double values) from standard input,
+        and prints all pairs that intersect
+         */
+    /*
     public static void main(String[] args) {
-        
+        int n = Integer.parseInt(args[0]);
+        In input = new In();
+        Out output = new Out();
+        Interval1D[] intervals = new Interval1D[n];
+        for (int i = 0; i < n; i++) {
+            double min = input.readDouble();
+            double max = input.readDouble();
+            output.println();
+            intervals[i] = new Interval1D(min, max);
+        }
+        output.println("Intersecting segments: ");
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                if (intervals[i].intersects(intervals[j]))
+                    output.println(intervals[i] + "---" + intervals[j]);
+            }
     }
+    */
 
 }
