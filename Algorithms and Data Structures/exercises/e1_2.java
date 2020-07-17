@@ -54,6 +54,7 @@ public class e1_2 {
                     output.println(intervals[i] + "---" + intervals[j]);
             }
     }
+    
     */
 
 }
