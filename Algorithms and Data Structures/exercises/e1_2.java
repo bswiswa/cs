@@ -4,11 +4,7 @@
  *  Last modified:     2020
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.Interval1D;
-import edu.princeton.cs.algs4.Interval2D;
-import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
 
 public class e1_2 {
     /// 1.2.1
@@ -67,6 +63,7 @@ public class e1_2 {
      * generates n random 2D intervals whose width and height are uniformly distributed between min and
      * max in the unit square. Draw them on StdDraw and print the number of pairs of intervals
      * that intersect and the number of intervals that are contained in one another */
+    /*
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
         double min = Double.parseDouble(args[1]);
@@ -103,5 +100,34 @@ public class e1_2 {
             }
         StdOut.println("Intersections: " + intersectionCount + " Contained: " + containedCount);
     }
+     */
+    /// 1.2.4 -> what is the output of the following?
+    /*
+    public static void main(String[] args) {
+        String string1 = "hello";
+        String string2 = string1;
+        string1 = "world";
+        StdOut.println(string1);
+        StdOut.println(string2);
+    }
 
+     */
+    /// 1.2.6
+    public static boolean isCircular(String s1, String s2) {
+        int len = s1.length();
+        if (len != s2.length()) return false;
+        StringBuilder comp = new StringBuilder(s1);
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                comp.setCharAt(((i + j) % len), s1.charAt(j));
+            }
+            if (comp.toString().equals(s2)) return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        StdOut.println(args[0] + " is circular shift of " + args[1] + "? : " + isCircular(args[0],
+                                                                                          args[1]));
+    }
 }
