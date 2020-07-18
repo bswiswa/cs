@@ -4,8 +4,6 @@
  *  Last modified:     2020
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.StdOut;
-
 public class e1_2 {
     /// 1.2.1
     /* write a Point2D client that takes an integer value n from the command line, generates
@@ -113,6 +111,7 @@ public class e1_2 {
 
      */
     /// 1.2.6
+    /*
     public static boolean isCircular(String s1, String s2) {
         int len = s1.length();
         if (len != s2.length()) return false;
@@ -130,4 +129,22 @@ public class e1_2 {
         StdOut.println(args[0] + " is circular shift of " + args[1] + "? : " + isCircular(args[0],
                                                                                           args[1]));
     }
+
+     */
+    /// 1.2.7
+    /*
+    public static String mystery(String s) {
+        int n = s.length();
+        if (n <= 1) return s;
+        String a = s.substring(0, n / 2);
+        String b = s.substring(n / 2, n);
+        return mystery(b) + mystery(a);
+    }
+
+    public static void main(String[] args) {
+        StdOut.println(mystery("batsi"));
+    }
+    
+     */
+    
 }
