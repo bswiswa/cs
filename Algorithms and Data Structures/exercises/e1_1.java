@@ -12,7 +12,7 @@ public class e1_1 {
     private static double[][] arr;
     private static boolean initialized;
     private static int count;
-
+    
     public static void main(String[] args) {
         // 1.1.1 b.
         //System.out.println(2.0e-6 * 100000000.1);
@@ -72,7 +72,7 @@ public class e1_1 {
         StdOut.println(binomial(100, 50, 0.25));
         StdOut.println(count);
         */
-        int[] a = {1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 7};
+        int[] a = { 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 7 };
         int[] uniq = getUnique(a);
         StdOut.println(Arrays.toString(uniq));
     }
