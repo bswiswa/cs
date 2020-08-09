@@ -1,85 +1,58 @@
 /* *****************************************************************************
- *  Name:              Batsirai Swiswa
- *  Coursera User ID:  123456
- *  Last modified:     7/9/2020
+ *  Name:              Batsi Swiswa
+ *  Last modified:     2020
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 public class Percolation {
-    private int[] grid;
-    private int n, nn, openCount;
+    private WeightedQuickUnionUF grid;
+    private boolean[] open;
+    private int n, openCount;
 
-    // creates n-by-n grid, with all sites initially blocked
+    // create n by n grid with all sites initially blocked
     public Percolation(int n) {
-        if (n < 1) {
-            throw new IllegalArgumentException();
-        }
+        if (n <= 0)
+            throw new IllegalArgumentException("Grid size should be 1 or more");
         this.n = n;
-        nn = (n * n) + 1;
-        grid = new int[nn];
-        for (int i = 0; i < nn; i++) {
-            grid[i] = i;
-        }
-    }
-
-    public void checkObj() {
-        for (int i = 0; i < nn; i++) {
-            System.out.printf("%d %d\n", i, grid[i]);
-        }
+        grid = new WeightedQuickUnionUF(n * n);
+        open = new boolean[n * n];
+        openCount = 0;
     }
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
-        int index = n * (row - 1) + col, top, right, bottom, left;
-        if (grid[index] < 1) return;
+        int index = getIndex(row, col);
+        validate(index);
+        if (open[index]) return;
+        open[index] = true;
         openCount++;
-        if (row == 1) {
-            grid[index] = grid[0];
-            return;
-        }
-        else {
-            // check if connected to a full site
-            top = index - n;
-            if (grid[top] == grid[0]) {
-                grid[index] = grid[0];
-                return;
-            }
-            if (col < n) {
-                right = index + 1;
-                if (grid[right] == grid[0]) {
-                    grid[index] = grid[0];
-                    return;
-                }
-            }
-            if (col > 1) {
-                left = index - 1;
-                if (grid[left] == grid[0]) {
-                    grid[index] = grid[0];
-                    return;
-                }
-            }
-            if (row < n) {
-                bottom = index + n;
-                if (grid[bottom] == grid[0]) {
-                    grid[index] = grid[0];
-                    return;
-                }
-            }
-            grid[index] = -1; // open site
-        }
+        // connect to top component
+        if (row > 1 && open[index - n]) connect(index, index - n);
+        // connect to bottom component
+        if (row < n && open[index + n]) connect(index, index + n);
+        // connect to left component
+        if (col > 1 && open[index - 1]) connect(index, index - 1);
+        // connect to right component
+        if (col < n && open[index + 1]) connect(index, index + 1);
     }
-
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        int index = n * (row - 1) + col;
-        return grid[index] == -1;
+        int index = getIndex(row, col);
+        validate(index);
+        return open[index];
     }
-
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
-        int index = n * (row - 1) + col;
-        return grid[index] == grid[0];
+        int index = getIndex(row, col);
+        validate(index);
+        if (open[index])
+            for (int i = 0; i < n; i++)
+                if (grid.find(index) == grid.find(i)) return true;
+        return false;
     }
 
     // returns the number of open sites
@@ -89,29 +62,42 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        for (int i = nn - n - 1; i < nn; i++) {
-            if (grid[i] == grid[0]) return true;
-        }
+        int max = n * n;
+        for (int i = max - n; i < max; i++)
+            for (int j = 0; j < n; j++)
+                if (grid.find(i) == grid.find(j)) return true;
         return false;
     }
 
-    // test client (optional)
+    private void validate(int m) {
+        if (m < 0 || m >= n * n)
+            throw new IllegalArgumentException("Incorrect location supplied");
+    }
+
+    private int getIndex(int row, int col) {
+        return (row - 1) * n + col - 1;
+    }
+
+    private void connect(int p, int q) {
+        grid.union(p, q);
+    }
+
+    // test client
     public static void main(String[] args) {
-        Percolation p = new Percolation(5);
+        Percolation p = new Percolation(4);
+        StdOut.println("isOpen(1, 1): " + Boolean.toString(p.isOpen(1, 1)));
+        StdOut.println("isFull(1, 1): " + Boolean.toString(p.isFull(1, 1)));
+        StdOut.println("isOpen(4, 1): " + Boolean.toString(p.isOpen(4, 1)));
+        StdOut.println("isFull(4, 1): " + Boolean.toString(p.isFull(4, 1)));
+        StdOut.println("Number of open sites: " + p.numberOfOpenSites());
+        StdOut.println("open (1,1) and (4,1)");
         p.open(1, 1);
-        p.open(2, 1);
-        p.open(2, 2);
-        p.open(2, 3);
-        p.open(2, 4);
-        p.open(2, 5);
-        p.open(3, 5);
-        p.open(3, 4);
-        p.open(3, 3);
-        p.open(3, 2);
-        p.open(4, 2);
         p.open(4, 1);
-        p.open(5, 1);
-        System.out
-                .printf("Open count: %d\nPercolates? %b\n", p.numberOfOpenSites(), p.percolates());
+        StdOut.println("isOpen(1, 1): " + Boolean.toString(p.isOpen(1, 1)));
+        StdOut.println("isFull(1, 1): " + Boolean.toString(p.isFull(1, 1)));
+        StdOut.println("isOpen(4, 1): " + Boolean.toString(p.isOpen(4, 1)));
+        StdOut.println("isFull(4, 1): " + Boolean.toString(p.isFull(4, 1)));
+        StdOut.println("Number of open sites: " + p.numberOfOpenSites());
+
     }
 }

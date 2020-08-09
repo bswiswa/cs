@@ -16,10 +16,10 @@ public class DoublingTest {
 
     public static double timetrial(int[] inp) {
         Stopwatch timer = new Stopwatch();
-        QuickFindUnionFind qf = new QuickFindUnionFind(inp.length);
-        for (int i = 2; i < inp.length; i++)
+        WeightedQuickUnionUF qf = new WeightedQuickUnionUF(inp.length);
+        for (int i = 1; i < inp.length; i++)
             qf.union(i - 1, i);
-        for (int i = 2; i < inp.length; i++)
+        for (int i = 1; i < inp.length; i++)
             qf.connected(i, i - 1);
         return timer.elapsedTime();
     }
